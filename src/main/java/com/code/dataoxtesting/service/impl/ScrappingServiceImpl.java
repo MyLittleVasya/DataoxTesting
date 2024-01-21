@@ -128,7 +128,7 @@ public class ScrappingServiceImpl implements ScrappingService {
    * @return sorted list of jobs.
    */
   private List<Job> sortJobListByPostedAt(final List<Job> jobList, final String postedAtSorting) {
-    if (postedAtSorting.equals("asc")) {
+    if ("asc".equals(postedAtSorting)) {
       return jobList.stream()
           .sorted(Comparator.comparing(Job::getPostedAt))
           .collect(Collectors.toList());
@@ -153,22 +153,15 @@ public class ScrappingServiceImpl implements ScrappingService {
     job.setIconUrl(
         parseAttributeValueUsingAnotherAttribute(CONTENT_ATTRIBUTE, ITEMPROP_ATTRIBUTE,
             LOGO_ATTRIBUTE, jobElement));
-    job.setUrl(
+    job.setUrl(constructJobUrl(
         parseAttributeValueUsingAnotherAttribute(HREF_ATTRIBUTE, DATA_TESTID_ATTRIBUTE,
             READ_MORE_ATTRIBUTE,
-            jobElement));
-    if (!job.getUrl().contains(HTTP)) {
-      job.setUrl(new StringBuilder(job.getUrl()).insert(0, targetUrl).toString());
-    }
-    job.setOrganizationUrl(
+            jobElement)));
+    job.setOrganizationUrl(constructOrganizationUrl(
         parseAttributeValueUsingAnotherAttribute(HREF_ATTRIBUTE, DATA_TESTID_ATTRIBUTE,
-            LINK_ATTRIBUTE, jobElement));
+            LINK_ATTRIBUTE, jobElement)));
     job.setOrganizationTitle(
         parseTagTextUsingAttribute(DATA_TESTID_ATTRIBUTE, LINK_ATTRIBUTE, jobElement));
-    if (!job.getOrganizationUrl().contains(targetUrl)) {
-      job.setOrganizationUrl(
-          new StringBuilder(job.getOrganizationUrl()).insert(0, targetUrl).toString());
-    }
     job.setLocation(
         parseAttributeValueUsingAnotherAttribute(CONTENT_ATTRIBUTE, ITEMPROP_ATTRIBUTE,
             ADDRESS_ATTRIBUTE,
@@ -179,11 +172,7 @@ public class ScrappingServiceImpl implements ScrappingService {
             jobElement), DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)));
     job.setTags(parseJobTags(jobElement));
     job.setDescription(parseJobDescription(job.getUrl()));
-    if (jobFunction != null) {
-      job.setFunction(jobFunction);
-    } else {
-      job.setFunction(NOT_FOUND_PLACEHOLDER);
-    }
+    job.setFunction(determineJobFunction(jobFunction));
     return job;
   }
 
@@ -251,5 +240,18 @@ public class ScrappingServiceImpl implements ScrappingService {
     }
     return NOT_FOUND_PLACEHOLDER;
   }
+
+  private String constructOrganizationUrl(String relativeUrl) {
+    return relativeUrl.contains(targetUrl) ? relativeUrl : targetUrl + relativeUrl;
+  }
+
+  private String constructJobUrl(String relativeUrl) {
+    return relativeUrl.contains(HTTP) ? relativeUrl : targetUrl + relativeUrl;
+  }
+
+  private String determineJobFunction(String jobFunction) {
+    return jobFunction != null ? jobFunction : NOT_FOUND_PLACEHOLDER;
+  }
+
 
 }

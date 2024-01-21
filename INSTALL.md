@@ -19,8 +19,21 @@
 ## Additional configuration
 Application is already ready to use. All the configurations are done, however, it can be changed using env variables before launch.
 Configurations that can be changed you can see in resources/application.yml. Mostly its endpoints, url to scrap, database credentials.
+
+### The interaction with the application is preferred through SwaggerUI which is located on `/ui` endpoint.
+
 ## SwaggerUI
 Application has Swagger UI for comfortable using and debugging. It allows to use main endpoint to scrap data without any additional settings and body creation.  
 As said above, the body creation for the request isn\`t needed. The application contains placeholder of body, which as for the 21.01.2024 will display you at least 2 jobs.  
 The body can be easily changed, to have less parameters, so that it will find more different jobs.  
-The body shouldn\`t contain ```null``` on the paramethers, instead it should be either `[]` or be missing, 
+The body shouldn\`t contain ```null``` on the paramethers, instead it should be either `[]` or be missing.
+
+### You can view database state through H2 console which is located on `/db` endpoint. Default username is `1` , default password is `1` 
+### If you want to create csv dump for the database(my own dump is already on git in `data` folder), you should:
+1. Open h2 console
+2. Login into h2 console
+3. In console for command writing enter `CALL CSVWRITE('data/JobTable.csv', 'SELECT * from JOB_TABLE');`
+4. Navigate to project folder and it\`s `target` subfolder
+5. In target folder will be folder `data` with your csv dump file.
+6. If you run application from IDE, than `data` folder will be just in your project folder
+

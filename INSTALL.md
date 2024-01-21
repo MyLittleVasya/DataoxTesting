@@ -16,8 +16,8 @@
 5. After that return to command line and run it using ```docker run -p 8080:8080 <NAME_OF_YOUR_IMAGE>```
 6. If everything is ok, you\`ll see logs of application launching. If something wrong you\`ll see that either.
 *If my already created image is available*
-1. Fetch docker image `mylittlevasya/dataostest`
-2. Run it through command line.
+1. Fetch docker image `mylittlevasya/dataoxtest:v1`
+2. Run it through command line or docker desktop.
 
 ## Additional configuration
 Application is already ready to use. All the configurations are done, however, it can be changed using env variables before launch.

@@ -1,0 +1,22 @@
+FROM openjdk:17-alpine as builder
+
+COPY .mvn .mvn
+
+COPY mvnw .
+
+COPY pom.xml .
+
+COPY src src
+
+RUN ./mvnw -B package
+
+
+FROM openjdk:17-alpine
+
+COPY --from=builder target/*.jar .
+
+# Exposing port 8080
+EXPOSE 8080
+
+# Starting the application
+CMD ["java", "-jar", "DataOxTesting-0.0.1-SNAPSHOT.jar"]

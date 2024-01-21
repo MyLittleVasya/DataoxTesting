@@ -11,4 +11,4 @@
 - Spring JPA for the ORM
 - Docker for containerization
 ### The application gives user ability to search for any job on this website, using almost all sorting paramethers in relatively friendly UI through SwaggerUI.
-### Details about launch instructions are in INSTALL.md
+### Details about launch instructions are in [INSTALL.md](https://github.com/MyLittleVasya/DataoxTesting/blob/master/INSTALL.md)

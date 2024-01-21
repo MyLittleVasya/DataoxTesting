@@ -4,9 +4,10 @@
 ## To run it from command line(Windows) through JRE you should:
 1. Fetch this repository to any comfortable place on your PC
 2. Open command line and navigate to project folder
-3. In project folder navigate to target folder ```cd target```
-4. When you there, just write ```java -jar DataOxTesting-0.0.1-SNAPSHOT.jar``` *<--- Name of the -jar can be changed, be careful*
-5. After that you will see logs of application launching. If something wrong you\`ll see that either.
+3. Run `mvn clean install`
+4. In project folder navigate to target folder ```cd target```
+5. When you there, just write ```java -jar DataOxTesting-0.0.1-SNAPSHOT.jar``` *<--- Name of the -jar can be changed, be careful*
+6. After that you will see logs of application launching. If something wrong you\`ll see that either.
 ### To run it from command line(Windows) through Docker you should:
 *If my already created image cannot be accessed*
 1. Fetch this repository to any comfortable place on your PC

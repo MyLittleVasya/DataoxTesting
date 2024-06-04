@@ -8,17 +8,6 @@
 4. In project folder navigate to target folder ```cd target```
 5. When you there, just write ```java -jar DataOxTesting-0.0.1-SNAPSHOT.jar``` *<--- Name of the -jar can be changed, be careful*
 6. After that you will see logs of application launching. If something wrong you\`ll see that either.
-### To run it from command line(Windows) through Docker you should:
-*If my already created image cannot be accessed*
-1. Fetch this repository to any comfortable place on your PC
-2. Open command line and navigate to project folder
-3. Build image of this project using ```docker build -t<ANY_NAME_YOU_WANT> -f Dockerfile.txt .``` *<--- dot is part of the command*
-4. If build was successful(it should :) ) you`ll see on docker desktop newly created image
-5. After that return to command line and run it using ```docker run -p 8080:8080 <NAME_OF_YOUR_IMAGE>```
-6. If everything is ok, you\`ll see logs of application launching. If something wrong you\`ll see that either.
-*If my already created image is available*
-1. Fetch docker image `mylittlevasya/dataoxtest:v1`
-2. Run it through command line or docker desktop.
 
 ## Additional configuration
 Application is already ready to use. All the configurations are done, however, it can be changed using env variables before launch.

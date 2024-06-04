@@ -13,7 +13,7 @@
 Application is already ready to use. All the configurations are done, however, it can be changed using env variables before launch.
 Configurations that can be changed you can see in resources/application.yml. Mostly its endpoints, url to scrap, database credentials.
 
-### The interaction with the application is preferred through SwaggerUI which is located on `/ui` endpoint.
+### The interaction with the application is preferred through SwaggerUI which is located on `/api` endpoint.
 
 ## SwaggerUI
 Application has Swagger UI for comfortable using and debugging. It allows to use main endpoint to scrap data without any additional settings and body creation.  
